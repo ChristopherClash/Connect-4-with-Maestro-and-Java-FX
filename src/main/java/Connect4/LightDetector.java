@@ -1,10 +1,10 @@
 package Connect4;
 
-import static com.connect4.connect4javafx.MaestroCommands.*;
+import static Connect4.MaestroCommands.*;
 public class LightDetector extends MaestroController {
 
-    public LightDetector(int runnerServoChannelNumber, int grabberServoChannelNumber) {
-        super(runnerServoChannelNumber, grabberServoChannelNumber);
+    public LightDetector() {
+        super();
     }
 
     /**
@@ -19,6 +19,7 @@ public class LightDetector extends MaestroController {
                 return correctedValue;
             }
         }
+        //TODO Calculate the column that has detected a token passing the sensor
         return -1;
     }
 }

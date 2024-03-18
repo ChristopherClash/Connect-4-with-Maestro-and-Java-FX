@@ -5,6 +5,6 @@ module Connect4 {
     requires com.almasb.fxgl.all;
     requires com.fazecast.jSerialComm;
 
-    opens Connect4x to javafx.fxml;
+    opens Connect4 to javafx.fxml;
     exports Connect4;
 }

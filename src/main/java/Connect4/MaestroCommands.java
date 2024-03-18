@@ -10,6 +10,10 @@ import java.util.concurrent.TimeUnit;
 public class MaestroCommands {
     private static final SerialPort comPort = SerialPort.getCommPort("COM3");
 
+    /**
+     * Sets the main thread to sleep for the specified number of milliseconds.
+     * @param millisecondsToSleep the time to sleep in milliseconds
+     */
     public static void sleep(int millisecondsToSleep) {
         try {
             TimeUnit.MILLISECONDS.sleep(millisecondsToSleep);
@@ -22,7 +26,7 @@ public class MaestroCommands {
      * Sends a command to the specified servo to move with the given target value.
      *
      * @param  commandByte  the command byte for the servo
-     * @param  servoByte    the servo byte for the servo
+     * @param  servoByte    the channel number byte for the servo
      * @param  targetByte   the target byte for the servo
      */
     public static void sendCommandToMaestro(byte commandByte, byte servoByte, byte targetByte) {
@@ -83,11 +87,10 @@ public class MaestroCommands {
 
     /**
      * Read from Maestro and return the column number if the light detector for that column returns a value.
-     *
+     * @param channelNumber the channel number to read
      * @return the column number with a light detector value less than 100, or -1 if no move detected
      */
     public static int readFromMaestro(byte channelNumber) {
-
         comPort.setComPortTimeouts(SerialPort.TIMEOUT_READ_SEMI_BLOCKING, 0, 0);
         byte[] read = new byte[]{(byte) 0x90, channelNumber};
         InputStream in = comPort.getInputStream();

@@ -68,21 +68,9 @@ public class GameController extends Application {
     private void initialise() {
         computerPlayer = new ComputerPlayer("computerPlayer", Color.RED);
         humanPlayer = new HumanPlayer("humanPlayer", Color.BLUE);
-        int[] channels = getChannelNumbers();
-        int runnerChannelNum = channels[0];
-        int grabberChannelNum = channels[1];
-        MaestroController maestroController = new MaestroController(runnerChannelNum, grabberChannelNum);
+        MaestroController maestroController = new MaestroController();
         connect4Game = new Connect4Game(computerPlayer, humanPlayer, maestroController, this);
         connect4Game.takeTurn(computerPlayer);
-    }
-
-    public int[] getChannelNumbers(){
-        Scanner scan = new Scanner(System.in);
-        System.out.println("Enter the channel number for the grabber");
-        int grabberChannelNum = scan.nextInt();
-        System.out.println("Enter the channel number for the runner");
-        int runnerChannelNum = scan.nextInt();
-        return new int[]{runnerChannelNum, grabberChannelNum};
     }
 
     /**
@@ -112,10 +100,7 @@ public class GameController extends Application {
         System.out.println("Cleaning up!...");
         humanPlayer = new HumanPlayer("humanPlayer", Color.BLUE);
         computerPlayer = new ComputerPlayer("computerPlayer", Color.RED);
-        int[] channels = getChannelNumbers();
-        int runnerChannelNum = channels[0];
-        int grabberChannelNum = channels[1];
-        MaestroController maestroController = new MaestroController(runnerChannelNum, grabberChannelNum);
+        MaestroController maestroController = new MaestroController();
         connect4Game = new Connect4Game(computerPlayer, humanPlayer, maestroController, this);
         mainGameTitleText.setText(GAME_TITLE);
         CurrentTurnText.setText(("It's the computer's turn..."));
